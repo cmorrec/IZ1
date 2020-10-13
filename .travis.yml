@@ -51,15 +51,15 @@ script:
   - cmake --build .
   - ctest --output-on-failure
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      valgrind --tool=memcheck --leak-check=yes ./IZ1,
-      y,
-      000-0-00-000000-0 Title 1954 5 2,
-      name1 1 1 2017 2 1 2021,
-      name1 1 1 2017 2 1 2021,
-      y,
-      000-0-00-000000-0 Title 1954 5 2,
-      name1 1 1 2017 2 1 2021,
-      name1 1 1 2017 2 1 2021,
+      valgrind --tool=memcheck --leak-check=yes ./IZ1 ;
+      y ;
+      000-0-00-000000-0 Title 1954 5 2 ;
+      name1 1 1 2017 2 1 2021 ;
+      name1 1 1 2017 2 1 2021 ;
+      y ;
+      000-0-00-000000-0 Title 1954 5 2 ;
+      name1 1 1 2017 2 1 2021 ;
+      name1 1 1 2017 2 1 2021 ;
       n ;
     fi
   - cd ..
