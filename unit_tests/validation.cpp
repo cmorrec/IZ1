@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "library.h"
+#include "../include/library.h"
 }
 
 #define SUCCESS 1
@@ -47,13 +47,18 @@ TEST(validate_functions, validate_publish_year) {
 }
 
 TEST(validate_functions, validate_book) {
-    book _book;
-    strcpy(_book.title, "Title");
-    strcpy(_book.isbn, "000-0-00-000000-0");
-    _book.publish_year = -1945;
-    _book.count = -56;
-    _book.num_readers = -78;
-    ASSERT_EQ(validate_book(&_book), SUCCESS);
-    strcpy(_book.isbn, "yyy");
-    ASSERT_EQ(validate_book(&_book), ERROR);
+    book correct_book;
+    strcpy(correct_book.title, "Title");
+    strcpy(correct_book.isbn, "000-0-00-000000-0");
+    correct_book.publish_year = -1945;
+    correct_book.count = -56;
+    correct_book.num_readers = -78;
+    ASSERT_EQ(validate_book(&correct_book), SUCCESS);
+    book not_correct_book;
+    strcpy(not_correct_book.title, "Title");
+    strcpy(not_correct_book.isbn, "000");
+    not_correct_book.publish_year = -1945;
+    not_correct_book.count = -56;
+    not_correct_book.num_readers = -78;
+    ASSERT_EQ(validate_book(&not_correct_book), ERROR);
 }

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.9)
 project(IZ1 C)
 enable_language(C CXX)
 set(CMAKE_C_FLAGS  "-std=c11")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_CLANG_TIDY clang-tidy -checks=-*,readability-*)
 configure_file(CMakeLists.txt.in
         googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -21,7 +23,7 @@ file(GLOB sources
         "${PROJECT_SOURCE_DIR}/include/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.c")
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 list(APPEND RUN_CLANG_TIDY_BIN_ARGS
         -clang-tidy-binary ${CLANG_TIDY_BIN}
         -header-filter=.*

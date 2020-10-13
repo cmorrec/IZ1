@@ -10,3 +10,4 @@ Makefile
 IZ1
 *.json
 *.cbp
+output.txt

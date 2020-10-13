@@ -17,8 +17,6 @@ compiler:
 addons:
   apt:
     packages:
-      - valgrind
-      - cppcheck
       - make
       - cmake
 
@@ -50,17 +48,3 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
   - cmake --build .
   - ctest --output-on-failure
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      valgrind --tool=memcheck --leak-check=yes ./IZ1 ;
-      y ;
-      000-0-00-000000-0 Title 1954 5 2 ;
-      name1 1 1 2017 2 1 2021 ;
-      name1 1 1 2017 2 1 2021 ;
-      y ;
-      000-0-00-000000-0 Title 1954 5 2 ;
-      name1 1 1 2017 2 1 2021 ;
-      name1 1 1 2017 2 1 2021 ;
-      n ;
-    fi
-  - cd ..
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --enable=warning,performance,information ./src ./unit_tests ./include/*.h ; fi
