@@ -60,7 +60,7 @@ script:
       000-0-00-000000-0 Title 1954 5 2
       name1 1 1 2017 2 1 2021
       name1 1 1 2017 2 1 2021
-      n
+      n ;
     fi
   - cd ..
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --enable=warning,performance,information ./src ./unit_tests ./include/*.h; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --enable=warning,performance,information ./src ./unit_tests ./include/*.h ; fi
