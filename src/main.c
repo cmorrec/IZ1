@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include "../include/library.h"
-
+#include "library.h"
 
 #define SUCCESS 1
 

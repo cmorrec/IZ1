@@ -1,8 +1,7 @@
-dist:     trusty    # используем Ubuntu 14.04 Trusty Tahr (а не 12.02 Precise Pangolin)
-sudo:     required  # используем Virtual Machine (а не Docker container)
+dist: trusty    # используем Ubuntu 14.04 Trusty Tahr (а не 12.02 Precise Pangolin)
+sudo: required  # используем Virtual Machine (а не Docker container)
 
-language: c      # на практике разницы между специфичным для C++ окружением
-# и, скажем, python -- никакой. Но пусть будет cpp.
+language: c
 
 os:
   # будем прогонять CI и на Linux, и на Mac OS X...
@@ -17,6 +16,8 @@ compiler:
 addons:
   apt:
     packages:
+      - valgrind
+      - cppcheck
       - make
       - cmake
 
@@ -31,13 +32,13 @@ env:
 matrix:
   exclude:
     # вручную исключим ненужные элементы из матрицы сборки:
-    - os:       osx
+    - os: osx
       compiler: gcc
 
-    - os:  osx
+    - os: osx
       env: TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
 
-    - os:  osx
+    - os: osx
       env: TARGET_CPU=x86 BUILD_CONFIGURATION=Release
 
 

@@ -45,20 +45,3 @@ TEST(validate_functions, validate_publish_year) {
     validate_publish_year(&not_correct_year);
     ASSERT_EQ(not_correct_year, 2020);
 }
-
-TEST(validate_functions, validate_book) {
-    book correct_book;
-    strcpy(correct_book.title, "Title");
-    strcpy(correct_book.isbn, "000-0-00-000000-0");
-    correct_book.publish_year = -1945;
-    correct_book.count = -56;
-    correct_book.num_readers = -78;
-    ASSERT_EQ(validate_book(&correct_book), SUCCESS);
-//    book not_correct_book;
-//    strcpy(not_correct_book.title, "Title");
-//    strcpy(not_correct_book.isbn, "000");
-//    not_correct_book.publish_year = -1945;
-//    not_correct_book.count = -56;
-//    not_correct_book.num_readers = -78;
-//    ASSERT_EQ(validate_book(&not_correct_book), ERROR);
-}
