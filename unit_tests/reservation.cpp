@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "../include/library.h"
+#include "library.h"
 }
 
 #define SUCCESS 1
