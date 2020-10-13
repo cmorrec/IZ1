@@ -54,6 +54,6 @@ TEST(validate_functions, validate_book) {
     _book.count = -56;
     _book.num_readers = -78;
     ASSERT_EQ(validate_book(&_book), SUCCESS);
-    strcpy(_book.isbn, "000");
+    strcpy(_book.isbn, "yyy");
     ASSERT_EQ(validate_book(&_book), ERROR);
 }

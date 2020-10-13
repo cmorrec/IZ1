@@ -8,3 +8,5 @@ unit_tests/*_tests
 CMakeCache.txt
 Makefile
 IZ1
+*.json
+*.cbp
