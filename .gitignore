@@ -3,6 +3,7 @@ cmake-build-*/
 CMakeFiles/
 googletest-*/
 Testing/
+build/
 unit_tests/*_tests
 *.cmake
 CMakeCache.txt
