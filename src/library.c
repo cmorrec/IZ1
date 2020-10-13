@@ -107,7 +107,7 @@ int validate_book(book* _book) {
 }
 
 int scan_book(book* _book) {
-    return scanf("%s%25s%d%d%d",
+    return scanf("%18s%25s%d%d%d",
                  _book->isbn,
                  _book->title,
                  &(_book->publish_year),

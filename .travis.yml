@@ -49,3 +49,5 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
   - cmake --build .
   - ctest --output-on-failure
+  - cd ..
+  - cppcheck -q --enable=all ./src ./unit_tests ./includes/*.h
