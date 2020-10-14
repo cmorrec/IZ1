@@ -67,7 +67,7 @@ TEST(reservation_functions, count_reserved_books) {
     book* iterator;
     iterator = books;
     int i = 0;
-    while (iterator != nullptr) {
+    while (iterator != NULL) {
         ASSERT_EQ(count_reserved_books(iterator), count_of_reserved);
         iterator = iterator->next;
         i++;
