@@ -36,3 +36,41 @@ TEST(reservation_functions, is_reserved) {
     date_begin[2] = 2021;
     ASSERT_EQ(is_reserved(now, date_begin, date_end), ERROR);
 }
+
+void set_readers(book* book) {
+    book->readers = static_cast<reader*>(calloc(book->num_readers, sizeof(reader)));
+    for (int i = 0; i < book->num_readers; i++) {
+        strcpy(book->readers[i].name, "name");
+        book->readers[i].date_begin[0] = book->readers[i].date_end[0] = 1;
+        book->readers[i].date_begin[1] = book->readers[i].date_end[1] = 1;
+        book->readers[i].date_begin[2] = 2011;
+        book->readers[i].date_end[2] = 2018 + i;
+    }
+}
+
+TEST(reservation_functions, count_reserved_books) {
+    book* books = nullptr;
+    book temp;
+    temp.count = 7;
+    temp.num_readers = 6;
+    temp.publish_year = 19;
+    strcpy(temp.isbn, "000-0-00-000000-0");
+    strcpy(temp.title, "title1");
+    set_readers(&temp);
+    int count_of_reserved = temp.num_readers - 3;
+    ASSERT_EQ(count_reserved_books(&temp), count_of_reserved);
+    push_back(&books, temp);
+    set_readers(&temp);
+    push_back(&books, temp);
+    set_readers(&temp);
+    push_back(&books, temp);
+    book* iterator;
+    iterator = books;
+    int i = 0;
+    while (iterator != nullptr) {
+        ASSERT_EQ(count_reserved_books(iterator), count_of_reserved);
+        iterator = iterator->next;
+        i++;
+    }
+    free_books(books);
+}

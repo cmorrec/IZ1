@@ -6,6 +6,8 @@
 #define SUCCESS 1
 #define ERROR 0
 #define ERROR_MEMORY -1
+#define SCAN_ARGUMENTS_BOOK 5
+#define SCAN_ARGUMENTS_READER 7
 
 void print_greeting() {
     puts("Hi, thank you to using my program. Next you should fill in data about this library.");
@@ -72,9 +74,15 @@ int validate_date(int* date_begin, int* date_end) {
 }
 
 int validate_isbn(const char* isbn) {
+    // 000-0-00-000000-0
+    int isbn_dash[] = {3, 5, 8, 15};
     int i = 0;
     for (; i < 17 && isbn[i] != '\0'; i++) {
-        if (i == 3 || i == 5 || i == 8 || i == 15) {
+        int it_must_be_dash = 0;
+        for (int j = 0; j < 4; ++j)
+            if (i == isbn_dash[j])
+                it_must_be_dash = 1;
+        if (it_must_be_dash) {
             if (isbn[i] != '-')
                 return ERROR;
             else
@@ -107,7 +115,7 @@ int validate_book(book* _book) {
 }
 
 int scan_book(book* _book) {
-    return scanf("%18s%25s%d%d%d",
+    return scanf("%17s%25s%d%d%d",
                  _book->isbn,
                  _book->title,
                  &(_book->publish_year),
@@ -159,7 +167,10 @@ int scan_books(book** books) {
     book temp;
     while (scan_agree()) {
         print_info();
-        scan_book(&temp);
+        if (scan_book(&temp) != SCAN_ARGUMENTS_BOOK) {
+            printf("There is need %d arguments. Re-enter this book.\n", SCAN_ARGUMENTS_BOOK);
+            continue;
+        }
         if (validate_book(&temp) == ERROR) {
             puts("ISBN is not correct. Re-enter this book.");
             continue;
@@ -173,11 +184,12 @@ int scan_books(book** books) {
         int i = 0;
         while (temp.num_readers > i) {
             print_reader_info();
-            scan_reader(temp.readers + i);
-            if (validate_date(temp.readers[i].date_begin, temp.readers[i].date_end) == SUCCESS)
+            if (scan_reader(temp.readers + i) != SCAN_ARGUMENTS_READER) {
+                printf("There is need %d arguments. Re-enter this user.\n", SCAN_ARGUMENTS_READER);
+            } else if (validate_date(temp.readers[i].date_begin, temp.readers[i].date_end) == SUCCESS)
                 i++;
             else
-                puts("Dates are not correct. Re-enter this user");
+                puts("Dates are not correct. Re-enter this user.");
         }
         if (push_back(books, temp) == ERROR_MEMORY) {
             free_books(*books);
