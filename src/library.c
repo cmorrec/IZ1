@@ -41,7 +41,8 @@ int scan_agree() {
     char c = ' ';
     puts("Add else one book? y/n");
     while (c != 'y' && c != 'n')
-        scanf("%c", &c);
+        if (scanf("%c", &c) != 1)
+            return ERROR;
     if (c == 'n')
         return ERROR;
     return SUCCESS;
