@@ -4,7 +4,7 @@
 #include <time.h>
 #define NAME_LENGTH 25
 #define TITLE_LENGTH 25
-#define ISBN_LENGTH 17
+#define ISBN_LENGTH 18
 #define DATE_SIZE 3
 
 typedef struct s_reader {
