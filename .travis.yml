@@ -51,6 +51,5 @@ script:
   - ctest --output-on-failure
   - cd ..
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck -q --enable=all ./src ./unit_tests ./includes/*.h; fi
-  - cd unit_tests
-  - make reservation_tests
+  - make clean && make
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind ./unit_tests/reservation_tests ; fi

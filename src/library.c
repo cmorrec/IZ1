@@ -177,7 +177,9 @@ int scan_books(book** books) {
         }
         if (temp.num_readers > 0)
             temp.readers = calloc(temp.num_readers, sizeof(reader));
-        if (temp.readers == NULL) {
+        else
+            temp.readers = NULL;
+        if (temp.readers == NULL && temp.num_readers > 0) {
             free_books(*books);
             return ERROR_MEMORY;
         }
