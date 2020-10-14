@@ -49,7 +49,7 @@ void set_readers(book* book) {
 }
 
 TEST(reservation_functions, count_reserved_books) {
-    book* books = nullptr;
+    book* books = NULL;
     book temp;
     temp.count = 7;
     temp.num_readers = 6;
