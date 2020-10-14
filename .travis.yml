@@ -49,6 +49,6 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
   - cmake --build .
   - ctest --output-on-failure
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind ctest --output-on-failure ; fi
   - cd ..
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck -q --enable=all ./src ./unit_tests ./includes/*.h; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind ctest --output-on-failure ; fi
