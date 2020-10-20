@@ -3,8 +3,13 @@ cmake-build-*/
 CMakeFiles/
 googletest-*/
 Testing/
+build/
+external/
 unit_tests/*_tests
 *.cmake
 CMakeCache.txt
 Makefile
 IZ1
+*.json
+*.cbp
+output.txt
